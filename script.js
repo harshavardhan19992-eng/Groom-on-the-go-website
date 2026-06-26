@@ -76,7 +76,6 @@ function adminLogin() {
     ).style.display = "block";
 
     displayAdminBookings();
-    tableBody.innerHTML += `
 <tr>
     <td>${booking.ownerName || ""}</td>
     <td>${booking.petName || ""}</td>
