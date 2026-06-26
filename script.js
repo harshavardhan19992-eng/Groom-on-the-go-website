@@ -124,7 +124,7 @@ async function submitBooking(event) {
     alert("Booking Failed");
     console.error(error);
   }
-};
+}
 
 
 // Customer Dashboard Bookings
