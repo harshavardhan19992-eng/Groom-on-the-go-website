@@ -127,9 +127,6 @@ async function submitBooking(event) {
 };
 
 
-
-}
-
 // Customer Dashboard Bookings
 
 function loadBookings() {
