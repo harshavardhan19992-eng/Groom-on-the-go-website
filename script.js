@@ -89,7 +89,6 @@ function adminLogin() {
 
 // Create Booking
 
-const 
 async function submitBooking(event) {
   event.preventDefault();
 
