@@ -89,7 +89,7 @@ function adminLogin() {
 
 // Create Booking
 
-const API_URL = "https://backend-files-2-cjix.onrender.com";
+const 
 async function submitBooking(event) {
   event.preventDefault();
 
@@ -127,35 +127,7 @@ async function submitBooking(event) {
   }
 };
 
-  const booking = {
-    id: Date.now(),
-    petName,
-    petType,
-    service,
-    date,
-    address,
-    status: "Pending"
-  };
 
-  const bookings =
-    JSON.parse(
-      localStorage.getItem("bookings")
-    ) || [];
-
-  bookings.push(booking);
-
-  localStorage.setItem(
-    "bookings",
-    JSON.stringify(bookings)
-  );
-
-  alert("Booking Submitted");
-
-  document
-    .getElementById("bookingForm")
-    .reset();
-
-  loadBookings();
 
 }
 
