@@ -253,10 +253,7 @@ function approveBooking(id) {
 
   displayAdminBookings();
   async function updateStatus(id, status) {
-updateStatus('${booking._id}','Confirmed')
-updateStatus('${booking._id}','In Progress')
-updateStatus('${booking._id}','Completed')
-updateStatus('${booking._id}','Cancelled')
+
   try {
 
     await fetch(
