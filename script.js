@@ -239,29 +239,7 @@ async function displayAdminBookings() {
 
 }
 
-  let bookings =
-    JSON.parse(
-      localStorage.getItem("bookings")
-    ) || [];
-
-  bookings = bookings.map(booking => {
-
-    if (booking.id === id) {
-      booking.status = "Confirmed";
-    }
-
-    return booking;
-
-  });
-
-  localStorage.setItem(
-    "bookings",
-    JSON.stringify(bookings)
-  );
-
-  displayAdminBookings();
-  async function updateStatus(id, status) {
-
+async function updateStatus(id, status) {
   try {
 
     await fetch(
