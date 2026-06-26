@@ -252,6 +252,34 @@ function approveBooking(id) {
   );
 
   displayAdminBookings();
+  async function updateStatus(id, status) {
+updateStatus('${booking._id}','Confirmed')
+updateStatus('${booking._id}','In Progress')
+updateStatus('${booking._id}','Completed')
+updateStatus('${booking._id}','Cancelled')
+  try {
+
+    await fetch(
+      `${API_URL}/api/bookings/${id}/status`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ status })
+      }
+    );
+
+    displayAdminBookings();
+
+  } catch (error) {
+
+    console.error(error);
+    alert("Status update failed");
+
+  }
+
+}
 
 }
 
