@@ -223,20 +223,78 @@ style="display:none;">
 </tr>
 </thead>
 
+    <tbody id="bookingTable">
+</section>
+    <tr>
+<!-- ADMIN LOGIN -->
+
+<section id="admin" class="container">
+
+    <h2 class="section-title">
+        Admin Login
+    </h2>
+
+    <input
+    type="text"
+    id="adminUser"
+    placeholder="Username">
+
+    <input
+    type="password"
+    id="adminPass"
+    placeholder="Password">
+
+    <button onclick="adminLogin()">
+        Login
+    </button>
+
+</section>
+
+<!-- ADMIN DASHBOARD -->
+
+<section
+id="adminDashboard"
+class="container"
+style="display:none;">
+
+    <h2 class="section-title">
+        Admin Dashboard
+    </h2>
+
+    <table>
+
+       <thead>
+<tr>
+    <th>Owner</th>
+    <th>Pet</th>
+    <th>Service</th>
+    <th>Date</th>
+    <th>Time</th>
+    <th>Status</th>
+    <th>Action</th>
+</tr>
+</thead>
+
      
 <tbody id="bookingTable">
+</tbody>
+    </table>
+
 </section>
+            
         <!-- price table -->
-<td>Puppy Bath (Under 6 Months)</td>
+<table>
+  <tr>
+        
+        <td>Puppy Bath (Under 6 Months)</td>
 <td>₹699</td>
 </tr>
 
 <tr>
 <td>De-Shedding Bath</td>
 <td>₹1,299</td>
+  </tr> 
 </tr>
-
-<tr>
 <td>Flea & Tick Bath</td>
 <td>₹1,499</td>
 </tr>
