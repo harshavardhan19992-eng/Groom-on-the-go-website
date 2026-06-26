@@ -227,9 +227,17 @@ async function displayAdminBookings() {
 });
 }
 
-// Approve Booking
 
-function approveBooking(id) {
+    displayAdminBookings();
+
+  } catch (error) {
+
+    console.error(error);
+    alert("Status update failed");
+
+  }
+
+}
 
   let bookings =
     JSON.parse(
