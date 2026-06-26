@@ -1,8 +1,8 @@
-const API_URL = https://backend-files-2-cjix.onrender.com/
 // ===============================
 // GROOM ON THE GO
 // script.js
 // ===============================
+const API_URL = https://backend-files-2-cjix.onrender.com/
 
 // Save Customer Registration
 
@@ -90,24 +90,42 @@ function adminLogin() {
 
 // Create Booking
 
-function submitBooking(event) {
-
+async function submitBooking(event) {
   event.preventDefault();
 
-  const petName =
-    document.getElementById("petName").value;
+  const booking = {
+    petName: document.getElementById("petName").value,
+    petType: document.getElementById("petType").value,
+    service: document.getElementById("service").value,
+    date: document.getElementById("appointmentDate").value,
+    address: document.getElementById("address").value
+  };
 
-  const petType =
-    document.getElementById("petType").value;
+  try {
+    const response = await fetch(
+      `${API_URL}/api/bookings`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(booking)
+      }
+    );
 
-  const service =
-    document.getElementById("service").value;
+    const data = await response.json();
 
-  const date =
-    document.getElementById("appointmentDate").value;
+    alert("Booking Submitted Successfully");
 
-  const address =
-    document.getElementById("address").value;
+    document
+      .getElementById("bookingForm")
+      .reset();
+
+  } catch (error) {
+    alert("Booking Failed");
+    console.error(error);
+  }
+};
 
   const booking = {
     id: Date.now(),
@@ -187,17 +205,16 @@ function loadBookings() {
 
 // Admin Dashboard
 
-function displayAdminBookings() {
+async function displayAdminBookings() {
+
+  const response = await fetch(
+    `${API_URL}/api/bookings`
+  );
+
+  const bookings = await response.json();
 
   const tableBody =
     document.getElementById("bookingTable");
-
-  if (!tableBody) return;
-
-  const bookings =
-    JSON.parse(
-      localStorage.getItem("bookings")
-    ) || [];
 
   tableBody.innerHTML = "";
 
@@ -209,17 +226,10 @@ function displayAdminBookings() {
         <td>${booking.petType}</td>
         <td>${booking.service}</td>
         <td>${booking.date}</td>
-        <td>${booking.status}</td>
-        <td>
-          <button onclick="approveBooking(${booking.id})">
-            Approve
-          </button>
-        </td>
+        <td>${booking.status || "Pending"}</td>
       </tr>
     `;
-
   });
-
 }
 
 // Approve Booking
