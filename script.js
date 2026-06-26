@@ -1,3 +1,4 @@
+const API_URL = https://backend-files-2-cjix.onrender.com/
 // ===============================
 // GROOM ON THE GO
 // script.js
