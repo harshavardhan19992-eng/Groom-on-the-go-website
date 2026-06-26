@@ -93,12 +93,20 @@ async function submitBooking(event) {
   event.preventDefault();
 
   const booking = {
-    petName: document.getElementById("petName").value,
-    petType: document.getElementById("petType").value,
-    service: document.getElementById("service").value,
-    date: document.getElementById("appointmentDate").value,
-    address: document.getElementById("address").value
-  };
+  ownerName: document.getElementById("ownerName").value,
+  phone: document.getElementById("phone").value,
+  email: document.getElementById("email").value,
+  petName: document.getElementById("petName").value,
+  breed: document.getElementById("breed").value,
+  petAge: document.getElementById("petAge").value,
+  petWeight: document.getElementById("petWeight").value,
+  petType: document.getElementById("petType").value,
+  service: document.getElementById("service").value,
+  date: document.getElementById("appointmentDate").value,
+  timeSlot: document.getElementById("timeSlot").value,
+  notes: document.getElementById("notes").value,
+  address: document.getElementById("address").value
+};
 
   try {
     const response = await fetch(
