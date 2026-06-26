@@ -2,8 +2,7 @@
 // GROOM ON THE GO
 // script.js
 // ===============================
-const API_URL = https://backend-files-2-cjix.onrender.com/
-
+const API_URL = "https://backend-files-2-cjix.onrender.com";
 // Save Customer Registration
 
 function registerCustomer() {
@@ -90,7 +89,7 @@ function adminLogin() {
 
 // Create Booking
 
-const API_URL = https://backend-files-2-cjix.onrender.com/
+const API_URL = "https://backend-files-2-cjix.onrender.com";
 async function submitBooking(event) {
   event.preventDefault();
 
