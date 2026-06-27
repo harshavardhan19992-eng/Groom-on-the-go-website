@@ -187,17 +187,20 @@ function loadBookings() {
 }
 
 // Admin Dashboard
-
 async function displayAdminBookings() {
   try {
+
+    alert("Step 1");
 
     const response = await fetch(
       `${API_URL}/api/bookings`
     );
 
+    alert("Step 2");
+
     const bookings = await response.json();
 
-    console.log("Bookings received:", bookings);
+    alert("Step 3");
 
     const tableBody =
       document.getElementById("bookingTable");
@@ -207,11 +210,13 @@ async function displayAdminBookings() {
       return;
     }
 
+    alert("Step 4");
+
     tableBody.innerHTML = "";
 
     bookings.forEach((booking) => {
 
-      const row = `
+      tableBody.innerHTML += `
         <tr>
           <td>${booking.ownerName || ""}</td>
           <td>${booking.petName || ""}</td>
@@ -221,26 +226,21 @@ async function displayAdminBookings() {
           <td>${booking.status || "Pending"}</td>
           <td>
             <button onclick="updateStatus('${booking._id}','Confirmed')">Confirm</button>
-            <button onclick="updateStatus('${booking._id}','In Progress')">Start</button>
-            <button onclick="updateStatus('${booking._id}','Completed')">Complete</button>
-            <button onclick="updateStatus('${booking._id}','Cancelled')">Cancel</button>
           </td>
         </tr>
       `;
-
-      tableBody.innerHTML += row;
-
     });
+
+    alert("Step 5");
 
   } catch (error) {
 
     console.error(error);
-    alert("Failed to load bookings");
+
+    alert("ERROR: " + error.message);
 
   }
 }
-
-
 // Page Load
 async function updateStatus(id, status) {
   try {
