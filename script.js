@@ -183,20 +183,6 @@ function loadBookings() {
 
 // Admin Dashboard
 
-async function displayAdminBookings() {
-
-  const response = await fetch(
-    `${API_URL}/api/bookings`
-  );
-
-  const bookings = await response.json();
-
-  const tableBody =
-    document.getElementById("bookingTable");
-
-  tableBody.innerHTML = "";
-
-  bookings.forEach(booking => {
 
   tableBody.innerHTML += `
     <tr>
