@@ -241,27 +241,30 @@ async function displayAdminBookings() {
       document.getElementById("bookingTable");
 
     if (!tableBody) return;
-console.log("Booking:", booking);
-    tableBody.innerHTML = "";
 
-    bookings.forEach(booking => {
-      tableBody.innerHTML += `
-        <tr>
-          <td>${booking.ownerName || ""}</td>
-          <td>${booking.petName || ""}</td>
-          <td>${booking.service || ""}</td>
-          <td>${booking.date || ""}</td>
-          <td>${booking.timeSlot || ""}</td>
-          <td>${booking.status || "Pending"}</td>
-          <td>
-            <button onclick="updateStatus('${booking._id}','Confirmed')">Confirm</button>
-            <button onclick="updateStatus('${booking._id}','In Progress')">Start</button>
-            <button onclick="updateStatus('${booking._id}','Completed')">Complete</button>
-            <button onclick="updateStatus('${booking._id}','Cancelled')">Cancel</button>
-          </td>
-        </tr>
-      `;
-    });
+    tableBody.innerHTML = "";
+    
+bookings.forEach(booking => {
+
+  console.log("Booking:", booking);
+
+  tableBody.innerHTML += `
+    <tr>
+      <td>${booking.ownerName || ""}</td>
+      <td>${booking.petName || ""}</td>
+      <td>${booking.service || ""}</td>
+      <td>${booking.date || ""}</td>
+      <td>${booking.timeSlot || ""}</td>
+      <td>${booking.status || "Pending"}</td>
+      <td>
+        <button onclick="updateStatus('${booking._id}','Confirmed')">Confirm</button>
+        <button onclick="updateStatus('${booking._id}','In Progress')">Start</button>
+        <button onclick="updateStatus('${booking._id}','Completed')">Complete</button>
+        <button onclick="updateStatus('${booking._id}','Cancelled')">Cancel</button>
+      </td>
+    </tr>
+  `;
+});
 
   } catch (error) {
     console.error(error);
@@ -272,7 +275,35 @@ console.log("Booking:", booking);
 
 
 // Page Load
+async function updateStatus(id, status) {
+  try {
 
+    const response = await fetch(
+      `${API_URL}/api/bookings/${id}/status`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ status })
+      }
+    );
+
+    const result = await response.json();
+
+    console.log(result);
+
+    alert(`Status changed to ${status}`);
+
+    displayAdminBookings();
+
+  } catch (error) {
+
+    console.error(error);
+    alert("Status update failed");
+
+  }
+}
 document.addEventListener(
   "DOMContentLoaded",
   () => {
