@@ -184,38 +184,6 @@ function loadBookings() {
 // Admin Dashboard
 
 
-  tableBody.innerHTML += `
-    <tr>
-      <td>${booking.ownerName || ""}</td>
-      <td>${booking.petName || ""}</td>
-      <td>${booking.service || ""}</td>
-      <td>${booking.date || ""}</td>
-      <td>${booking.timeSlot || ""}</td>
-      <td>${booking.status || "Pending"}</td>
-
-      <td>
-        <button onclick="updateStatus('${booking._id}','Confirmed')">
-          Confirm
-        </button>
-
-        <button onclick="updateStatus('${booking._id}','In Progress')">
-          Start
-        </button>
-
-        <button onclick="updateStatus('${booking._id}','Completed')">
-          Complete
-        </button>
-
-        <button onclick="updateStatus('${booking._id}','Cancelled')">
-          Cancel
-        </button>
-      </td>
-    </tr>
-  `;
-
-});
-}
-
 async function displayAdminBookings() {
   try {
     const response = await fetch(
