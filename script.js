@@ -71,14 +71,6 @@ function adminLogin() {
     password === "admin123"
   ) {
 
-    // Hide login section
-    document.getElementById("adminLoginSection").style.display = "none";
-
-    // Show dashboard
-    document.getElementById("adminDashboard").style.display = "block";
-
-    displayAdminBookings();
-
     alert("Admin Login Successful");
 
   } else {
