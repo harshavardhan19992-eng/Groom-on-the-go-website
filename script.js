@@ -138,6 +138,14 @@ async function adminLogin() {
 
 async function submitBooking(event) {
   event.preventDefault();
+  const service = document.getElementById("service").value;
+
+let price = 0;
+
+if (service === "Basic Bath") price = 799;
+else if (service === "Premium Bath") price = 1499;
+else if (service === "Full Grooming") price = 2499;
+else if (service === "Haircut") price = 999;
 
   const booking = {
   ownerName: document.getElementById("ownerName").value,
@@ -149,6 +157,7 @@ async function submitBooking(event) {
   petWeight: document.getElementById("petWeight").value,
   petType: document.getElementById("petType").value,
   service: document.getElementById("service").value,
+  price: price,   // 
   date: document.getElementById("appointmentDate").value,
   timeSlot: document.getElementById("timeSlot").value,
   notes: document.getElementById("notes").value,
