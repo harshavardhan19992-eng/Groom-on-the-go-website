@@ -3,6 +3,7 @@
 // script.js
 // ===============================
 const API_URL = "https://backend-files-2-cjix.onrender.com";
+console.log("script.js loaded successfully");
 // Save Customer Registration
 
 function registerCustomer() {
