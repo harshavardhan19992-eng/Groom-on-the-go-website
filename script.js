@@ -57,7 +57,6 @@ function customerLogin() {
 }
 
 // Admin Login
-
 function adminLogin() {
 
   const username =
@@ -71,20 +70,23 @@ function adminLogin() {
     password === "admin123"
   ) {
 
-    document.getElementById(
-      "adminDashboard"
-    ).style.display = "block";
+    // Hide login section
+    document.getElementById("adminLoginSection").style.display = "none";
+
+    // Show dashboard
+    document.getElementById("adminDashboard").style.display = "block";
 
     displayAdminBookings();
-alert("Admin Login Successful");
+
+    alert("Admin Login Successful");
 
   } else {
 
     alert("Invalid Login");
 
   }
-
 }
+
 
 // Create Booking
 
