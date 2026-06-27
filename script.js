@@ -53,10 +53,50 @@ function customerLogin() {
     "customerName"
   ).innerText = customer.name;
 
-  loadBookings();
+  loadCustomerBookings(customer.phone);
 
 }
 
+// Load Customer Bookings
+
+async function loadCustomerBookings(phone) {
+
+  try {
+
+    const response = await fetch(
+      `${API_URL}/api/bookings/customer/${phone}`
+    );
+
+    const bookings = await response.json();
+
+    const bookingList =
+      document.getElementById("appointmentList");
+
+    if (!bookingList) return;
+
+    bookingList.innerHTML = "";
+
+    bookings.forEach(booking => {
+
+      bookingList.innerHTML += `
+        <li>
+          ${booking.petName}
+          | ${booking.service}
+          | ${booking.date}
+          | <strong>${booking.status}</strong>
+        </li>
+      `;
+
+    });
+
+  } catch (error) {
+
+    console.error(error);
+    alert("Failed to load bookings");
+
+  }
+
+}
 // Admin Login
 async function adminLogin() {
 
