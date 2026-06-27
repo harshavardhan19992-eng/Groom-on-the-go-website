@@ -227,42 +227,46 @@ async function displayAdminBookings() {
 });
 }
 
-
-    displayAdminBookings();
-
-  } catch (error) {
-
-    console.error(error);
-    alert("Status update failed");
-
-  }
-
-}
-
-async function updateStatus(id, status) {
+async function displayAdminBookings() {
   try {
-
-    await fetch(
-      `${API_URL}/api/bookings/${id}/status`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ status })
-      }
+    const response = await fetch(
+      `${API_URL}/api/bookings`
     );
 
-    displayAdminBookings();
+    const bookings = await response.json();
+
+    const tableBody =
+      document.getElementById("bookingTable");
+
+    if (!tableBody) return;
+
+    tableBody.innerHTML = "";
+
+    bookings.forEach(booking => {
+      tableBody.innerHTML += `
+        <tr>
+          <td>${booking.ownerName || ""}</td>
+          <td>${booking.petName || ""}</td>
+          <td>${booking.service || ""}</td>
+          <td>${booking.date || ""}</td>
+          <td>${booking.timeSlot || ""}</td>
+          <td>${booking.status || "Pending"}</td>
+          <td>
+            <button onclick="updateStatus('${booking._id}','Confirmed')">Confirm</button>
+            <button onclick="updateStatus('${booking._id}','In Progress')">Start</button>
+            <button onclick="updateStatus('${booking._id}','Completed')">Complete</button>
+            <button onclick="updateStatus('${booking._id}','Cancelled')">Cancel</button>
+          </td>
+        </tr>
+      `;
+    });
 
   } catch (error) {
-
     console.error(error);
-    alert("Status update failed");
-
+    alert("Failed to load bookings");
   }
-
 }
+  
 
 
 // Page Load
