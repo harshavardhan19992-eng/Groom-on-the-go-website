@@ -230,13 +230,11 @@ function loadBookings() {
 async function displayAdminBookings() {
   try {
 
-    alert("Step 1");
 
     const response = await fetch(
       `${API_URL}/api/bookings`
     );
 
-    alert("Step 2");
 
     const bookings = await response.json();
     document.getElementById("totalBookings").innerText =
@@ -254,7 +252,6 @@ document.getElementById("completedBookings").innerText =
 
 document.getElementById("totalRevenue").innerText =
   "₹0";
-    alert("Step 3");
 
     const tableBody =
       document.getElementById("bookingTable");
@@ -264,7 +261,6 @@ document.getElementById("totalRevenue").innerText =
       return;
     }
 
-    alert("Step 4");
 
     tableBody.innerHTML = "";
 
@@ -285,7 +281,6 @@ document.getElementById("totalRevenue").innerText =
       `;
     });
 
-    alert("Step 5");
 
   } catch (error) {
 
