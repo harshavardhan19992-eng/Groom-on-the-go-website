@@ -250,8 +250,19 @@ document.getElementById("completedBookings").innerText =
     booking => booking.status === "Completed"
   ).length;
 
+const revenue =
+  bookings
+    .filter(
+      booking => booking.status === "Completed"
+    )
+    .reduce(
+      (sum, booking) =>
+        sum + (booking.price || 0),
+      0
+    );
+
 document.getElementById("totalRevenue").innerText =
-  "₹0";
+  `₹${revenue}`;
 
     const tableBody =
       document.getElementById("bookingTable");
