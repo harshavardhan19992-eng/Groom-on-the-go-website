@@ -58,7 +58,7 @@ function customerLogin() {
 }
 
 // Admin Login
-function adminLogin() {
+async function adminLogin() {
 
   const username =
     document.getElementById("adminUser").value;
@@ -177,22 +177,28 @@ function loadBookings() {
 
 async function displayAdminBookings() {
   try {
+
     const response = await fetch(
       `${API_URL}/api/bookings`
     );
 
     const bookings = await response.json();
 
+    console.log("Bookings received:", bookings);
+
     const tableBody =
       document.getElementById("bookingTable");
 
-    if (!tableBody) return;
+    if (!tableBody) {
+      alert("bookingTable not found");
+      return;
+    }
 
     tableBody.innerHTML = "";
 
-    bookings.forEach(booking => {
+    bookings.forEach((booking) => {
 
-      tableBody.innerHTML += `
+      const row = `
         <tr>
           <td>${booking.ownerName || ""}</td>
           <td>${booking.petName || ""}</td>
@@ -208,14 +214,18 @@ async function displayAdminBookings() {
           </td>
         </tr>
       `;
+
+      tableBody.innerHTML += row;
+
     });
 
   } catch (error) {
+
     console.error(error);
     alert("Failed to load bookings");
+
   }
 }
-  
 
 
 // Page Load
