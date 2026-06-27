@@ -157,7 +157,7 @@ else if (service === "Haircut") price = 999;
   petWeight: document.getElementById("petWeight").value,
   petType: document.getElementById("petType").value,
   service: document.getElementById("service").value,
-  price: price,   // 
+  price: document.getElementById("price").value
   date: document.getElementById("appointmentDate").value,
   timeSlot: document.getElementById("timeSlot").value,
   notes: document.getElementById("notes").value,
@@ -287,18 +287,25 @@ document.getElementById("totalRevenue").innerText =
     bookings.forEach((booking) => {
 
       tableBody.innerHTML += `
-        <tr>
-          <td>${booking.ownerName || ""}</td>
-          <td>${booking.petName || ""}</td>
-          <td>${booking.service || ""}</td>
-          <td>${booking.date || ""}</td>
-          <td>${booking.timeSlot || ""}</td>
-          <td>${booking.status || "Pending"}</td>
-          <td>
-            <button onclick="updateStatus('${booking._id}','Confirmed')">Confirm</button>
-          </td>
-        </tr>
-      `;
+<tr>
+  <td>${booking.ownerName || ""}</td>
+  <td>${booking.petName || ""}</td>
+  <td>${booking.service || ""}</td>
+  <td>${booking.date || ""}</td>
+  <td>${booking.timeSlot || ""}</td>
+  <td>${booking.status || "Pending"}</td>
+  <td>₹${booking.price || 0}</td>
+
+  <td>
+    <button onclick="updateStatus('${booking._id}','Confirmed')">Confirm</button>
+    <button onclick="updateStatus('${booking._id}','Completed')">Complete</button>
+
+    <button onclick="payViaUPI(${booking.price || 0})">
+      Pay ₹${booking.price || 0}
+    </button>
+  </td>
+</tr>
+`;
     });
 
 
@@ -419,10 +426,17 @@ document.addEventListener(
 
 function payViaUPI(amount) {
 
-  const upiID = "yourbusiness@upi"; // change this
+  if (!amount || amount <= 0) {
+    alert("Invalid payment amount");
+    return;
+  }
+
+  const upiID = "yourbusiness@upi"; // replace with real UPI ID
+
+  const name = "Groom on the Go";
 
   const upiLink =
-    `upi://pay?pa=${upiID}&pn=GroomOnTheGo&am=${amount}&cu=INR`;
+    `upi://pay?pa=${upiID}&pn=${name}&am=${amount}&cu=INR`;
 
   window.location.href = upiLink;
 }
