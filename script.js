@@ -241,7 +241,7 @@ async function displayAdminBookings() {
       document.getElementById("bookingTable");
 
     if (!tableBody) return;
-
+console.log("Booking:", booking);
     tableBody.innerHTML = "";
 
     bookings.forEach(booking => {
