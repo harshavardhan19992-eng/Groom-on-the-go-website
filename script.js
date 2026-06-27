@@ -58,12 +58,7 @@ function customerLogin() {
 }
 
 // Admin Login
-function adminLogin() {
-
-  alert("Login button clicked");
-
-  document.getElementById("adminDashboard").style.display = "block";
-}
+async function adminLogin() {
 
   const username =
     document.getElementById("adminUser").value;
@@ -76,7 +71,21 @@ function adminLogin() {
     password === "admin123"
   ) {
 
-    alert("Admin Login Successful");
+    alert("Login Successful");
+
+    const dashboard =
+      document.getElementById("adminDashboard");
+
+    if (!dashboard) {
+      alert("adminDashboard not found");
+      return;
+    }
+
+    dashboard.style.display = "block";
+
+    await displayAdminBookings();
+
+    alert("Bookings loaded");
 
   } else {
 
@@ -84,7 +93,6 @@ function adminLogin() {
 
   }
 }
-
 
 // Create Booking
 
