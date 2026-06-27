@@ -264,7 +264,6 @@ async function updateStatus(id, status) {
 
 }
 
-}
 
 // Page Load
 
