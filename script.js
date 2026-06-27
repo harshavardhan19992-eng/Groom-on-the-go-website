@@ -239,7 +239,21 @@ async function displayAdminBookings() {
     alert("Step 2");
 
     const bookings = await response.json();
+    document.getElementById("totalBookings").innerText =
+  bookings.length;
 
+document.getElementById("pendingBookings").innerText =
+  bookings.filter(
+    booking => booking.status === "Pending"
+  ).length;
+
+document.getElementById("completedBookings").innerText =
+  bookings.filter(
+    booking => booking.status === "Completed"
+  ).length;
+
+document.getElementById("totalRevenue").innerText =
+  "₹0";
     alert("Step 3");
 
     const tableBody =
