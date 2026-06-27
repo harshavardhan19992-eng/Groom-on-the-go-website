@@ -58,7 +58,12 @@ function customerLogin() {
 }
 
 // Admin Login
-async function adminLogin() {
+function adminLogin() {
+
+  alert("Login button clicked");
+
+  document.getElementById("adminDashboard").style.display = "block";
+}
 
   const username =
     document.getElementById("adminUser").value;
