@@ -356,9 +356,73 @@ document.addEventListener(
       form.addEventListener(
         "submit",
         submitBooking
+
+        
+      );
+
+    }
+
+  // Page Load
+async function updateStatus(id, status) {
+  try {
+
+    const response = await fetch(
+      `${API_URL}/api/bookings/${id}/status`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ status })
+      }
+    );
+
+    const result = await response.json();
+
+    console.log(result);
+
+    alert(`Status changed to ${status}`);
+
+    displayAdminBookings();
+
+  } catch (error) {
+
+    console.error(error);
+    alert("Status update failed");
+
+  }
+}
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
+
+    loadBookings();
+
+    const form =
+      document.getElementById(
+        "bookingForm"
+      );
+
+    if (form) {
+
+      form.addEventListener(
+        "submit",
+        submitBooking
+
+        
       );
 
     }
 
   }
 );
+
+function payViaUPI(amount) {
+
+  const upiID = "yourbusiness@upi"; // change this
+
+  const upiLink =
+    `upi://pay?pa=${upiID}&pn=GroomOnTheGo&am=${amount}&cu=INR`;
+
+  window.location.href = upiLink;
+}
