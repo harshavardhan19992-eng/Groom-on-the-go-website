@@ -1,4 +1,4 @@
-const API_URL = "https://YOUR-RENDER-BACKEND.onrender.com";
+const API_URL = "https://backend-files-2-cjix.onrender.com";
 
 async function loadBookings(){
 
