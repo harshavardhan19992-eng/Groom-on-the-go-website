@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Groom on the Go - Admin Dashboard</title>
+
+<link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+
+<header>
+<h1>Groom on the Go Admin Dashboard</h1>
+</header>
+
+<div class="stats">
+
+<div class="card">
+<h2 id="totalBookings">0</h2>
+<p>Total Bookings</p>
+</div>
+
+<div class="card">
+<h2 id="pendingBookings">0</h2>
+<p>Pending</p>
+</div>
+
+<div class="card">
+<h2 id="completedBookings">0</h2>
+<p>Completed</p>
+</div>
+
+</div>
+
+<div class="table-container">
+
+<table>
+
+<thead>
+<tr>
+<th>Customer</th>
+<th>Phone</th>
+<th>Pet</th>
+<th>Service</th>
+<th>Date</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody id="bookingTable">
+</tbody>
+
+</table>
+
+</div>
+
+<script src="admin.js"></script>
+
+</body>
+</html>
